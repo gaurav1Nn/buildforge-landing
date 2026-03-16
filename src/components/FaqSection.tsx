@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { SectionHeading } from "@/components/SectionHeading";
 import { useGsapScrollReveal } from "@/hooks/useGsap";
+import gsap from "gsap";
 
 const faqGroups = [
   {
@@ -45,26 +46,53 @@ const faqGroups = [
   },
 ];
 
-const FaqItem = ({ q, a }: { q: string; a: string }) => {
+const FaqItem = ({ q, a, index }: { q: string; a: string; index: number }) => {
   const [open, setOpen] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const iconRef = useRef<HTMLSpanElement>(null);
+
+  const toggleOpen = () => {
+    setOpen(!open);
+
+    // Animate content height
+    if (contentRef.current) {
+      gsap.to(contentRef.current, {
+        height: open ? 0 : "auto",
+        opacity: open ? 0 : 1,
+        duration: 0.4,
+        ease: "power2.inOut",
+      });
+    }
+
+    // Animate icon rotation
+    if (iconRef.current) {
+      gsap.to(iconRef.current, {
+        rotation: open ? 0 : 135,
+        duration: 0.3,
+        ease: "back.out(1.7)",
+      });
+    }
+  };
 
   return (
-    <div className="border-b border-border">
+    <div className="border-b border-border group">
       <button
-        onClick={() => setOpen(!open)}
-        className="w-full py-5 flex justify-between items-center text-left"
+        onClick={toggleOpen}
+        className="w-full py-5 flex justify-between items-center text-left transition-colors hover:bg-foreground/[0.02] -mx-2 px-2 rounded-lg"
       >
-        <span className="font-medium pr-4">{q}</span>
+        <span className="font-medium pr-4 group-hover:text-foreground transition-colors">{q}</span>
         <span
-          className="text-muted-foreground text-xl flex-shrink-0 transition-transform duration-300"
-          style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)" }}
+          ref={iconRef}
+          className="text-muted-foreground text-xl flex-shrink-0"
+          style={{ display: "inline-block" }}
         >
           +
         </span>
       </button>
       <div
-        className="overflow-hidden transition-all duration-400"
-        style={{ maxHeight: open ? "300px" : "0", paddingTop: open ? "0" : "0" }}
+        ref={contentRef}
+        className="overflow-hidden"
+        style={{ height: 0, opacity: 0 }}
       >
         <p className="pb-5 text-muted-foreground leading-relaxed">{a}</p>
       </div>
@@ -84,14 +112,14 @@ export const FaqSection = () => {
       </div>
 
       <div className="mt-16 space-y-12">
-        {faqGroups.map((group) => (
+        {faqGroups.map((group, groupIndex) => (
           <div key={group.category} className="faq-group">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4 group-hover:text-accent transition-colors">
               {group.category}
             </h3>
             <div>
-              {group.items.map((item) => (
-                <FaqItem key={item.q} q={item.q} a={item.a} />
+              {group.items.map((item, itemIndex) => (
+                <FaqItem key={item.q} q={item.q} a={item.a} index={groupIndex * 10 + itemIndex} />
               ))}
             </div>
           </div>
