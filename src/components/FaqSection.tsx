@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SectionHeading } from "@/components/SectionHeading";
+import { useGsapScrollReveal } from "@/hooks/useGsap";
 
 const faqGroups = [
   {
@@ -54,13 +55,16 @@ const FaqItem = ({ q, a }: { q: string; a: string }) => {
         className="w-full py-5 flex justify-between items-center text-left"
       >
         <span className="font-medium pr-4">{q}</span>
-        <span className="text-muted-foreground text-xl flex-shrink-0">
-          {open ? "−" : "+"}
+        <span
+          className="text-muted-foreground text-xl flex-shrink-0 transition-transform duration-300"
+          style={{ transform: open ? "rotate(45deg)" : "rotate(0deg)" }}
+        >
+          +
         </span>
       </button>
       <div
-        className="overflow-hidden transition-all duration-300"
-        style={{ maxHeight: open ? "200px" : "0" }}
+        className="overflow-hidden transition-all duration-400"
+        style={{ maxHeight: open ? "300px" : "0", paddingTop: open ? "0" : "0" }}
       >
         <p className="pb-5 text-muted-foreground leading-relaxed">{a}</p>
       </div>
@@ -68,25 +72,31 @@ const FaqItem = ({ q, a }: { q: string; a: string }) => {
   );
 };
 
-export const FaqSection = () => (
-  <section id="faq" className="py-24 md:py-32 px-6 max-w-3xl mx-auto">
-    <SectionHeading label="FAQ">
-      Common *questions.*
-    </SectionHeading>
+export const FaqSection = () => {
+  const ref = useGsapScrollReveal(".faq-heading, .faq-group");
 
-    <div className="mt-16 space-y-12">
-      {faqGroups.map((group) => (
-        <div key={group.category}>
-          <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">
-            {group.category}
-          </h3>
-          <div>
-            {group.items.map((item) => (
-              <FaqItem key={item.q} q={item.q} a={item.a} />
-            ))}
+  return (
+    <section ref={ref} id="faq" className="py-24 md:py-32 px-6 max-w-3xl mx-auto">
+      <div className="faq-heading">
+        <SectionHeading label="FAQ">
+          Common *questions.*
+        </SectionHeading>
+      </div>
+
+      <div className="mt-16 space-y-12">
+        {faqGroups.map((group) => (
+          <div key={group.category} className="faq-group">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">
+              {group.category}
+            </h3>
+            <div>
+              {group.items.map((item) => (
+                <FaqItem key={item.q} q={item.q} a={item.a} />
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-  </section>
-);
+        ))}
+      </div>
+    </section>
+  );
+};

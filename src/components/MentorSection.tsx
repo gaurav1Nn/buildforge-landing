@@ -1,4 +1,5 @@
 import { SectionHeading } from "@/components/SectionHeading";
+import { useGsapScrollReveal } from "@/hooks/useGsap";
 
 const mentors = [
   { name: "Sarah Chen", title: "Founder @ NexusAI" },
@@ -28,18 +29,24 @@ const MentorCard = ({ name, title, index }: { name: string; title: string; index
   </div>
 );
 
-export const MentorSection = () => (
-  <section id="mentors" className="py-24 md:py-32 overflow-hidden border-y border-border">
-    <div className="max-w-7xl mx-auto px-6 mb-12">
-      <SectionHeading label="MENTOR NETWORK">
-        Learn from people who've *done it.*
-      </SectionHeading>
-    </div>
+export const MentorSection = () => {
+  const ref = useGsapScrollReveal(".mentor-heading");
 
-    <div className="flex gap-6 animate-marquee whitespace-nowrap">
-      {[...mentors, ...mentors].map((m, i) => (
-        <MentorCard key={i} name={m.name} title={m.title} index={i % mentors.length} />
-      ))}
-    </div>
-  </section>
-);
+  return (
+    <section ref={ref} id="mentors" className="py-24 md:py-32 overflow-hidden border-y border-border">
+      <div className="max-w-7xl mx-auto px-6 mb-12">
+        <div className="mentor-heading">
+          <SectionHeading label="MENTOR NETWORK">
+            Learn from people who've *done it.*
+          </SectionHeading>
+        </div>
+      </div>
+
+      <div className="flex gap-6 whitespace-nowrap hover:[animation-play-state:paused]" style={{ animation: "marquee 30s linear infinite" }}>
+        {[...mentors, ...mentors, ...mentors, ...mentors].map((m, i) => (
+          <MentorCard key={i} name={m.name} title={m.title} index={i % mentors.length} />
+        ))}
+      </div>
+    </section>
+  );
+};

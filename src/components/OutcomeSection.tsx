@@ -1,4 +1,5 @@
 import { SectionHeading } from "@/components/SectionHeading";
+import { useGsapScrollReveal } from "@/hooks/useGsap";
 
 const outcomes = [
   {
@@ -15,21 +16,27 @@ const outcomes = [
   },
 ];
 
-export const OutcomeSection = () => (
-  <section className="py-24 md:py-32 px-6 max-w-7xl mx-auto border-t border-border">
-    <SectionHeading label="THE OUTCOME">
-      What you leave *BuildForge* with.
-    </SectionHeading>
+export const OutcomeSection = () => {
+  const ref = useGsapScrollReveal(".outcome-heading, .outcome-card");
 
-    <div className="grid md:grid-cols-3 gap-6 mt-16">
-      {outcomes.map((o) => (
-        <div key={o.title} className="p-8 rounded-2xl bg-card border border-border">
-          <h3 className="text-xl font-bold mb-4">
-            <em className="heading-accent">{o.title}</em>
-          </h3>
-          <p className="text-muted-foreground leading-relaxed">{o.desc}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-);
+  return (
+    <section ref={ref} className="py-24 md:py-32 px-6 max-w-7xl mx-auto border-t border-border">
+      <div className="outcome-heading">
+        <SectionHeading label="THE OUTCOME">
+          What you leave *BuildForge* with.
+        </SectionHeading>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-6 mt-16">
+        {outcomes.map((o) => (
+          <div key={o.title} className="outcome-card p-8 rounded-2xl bg-card border border-border transition-all duration-200 hover:-translate-y-1 hover:border-foreground/20">
+            <h3 className="text-xl font-bold mb-4">
+              <em className="heading-accent">{o.title}</em>
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">{o.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
