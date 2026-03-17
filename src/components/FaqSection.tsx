@@ -7,9 +7,9 @@ const faqGroups = [
   {
     category: "About",
     items: [
-      { q: "What is BuildForge Academy?", a: "BuildForge is a 12-week intensive entrepreneurship program based in Cebu, Philippines. You build a real, revenue-generating business from scratch with world-class mentorship." },
+      { q: "What is BravioSchool Academy?", a: "BravioSchool is a 12-week intensive entrepreneurship program based in Bali, Indonesia. You build a real, revenue-generating business from scratch with world-class mentorship." },
       { q: "How is this different from a traditional MBA?", a: "We don't teach theory — we teach execution. You'll launch a real business, earn real revenue, and graduate with a company, not just a degree." },
-      { q: "Where is the program located?", a: "The program takes place in Cebu City, Philippines — a vibrant tech hub with low cost of living and direct access to Asian markets." },
+      { q: "Where is the program located?", a: "The program takes place in Bali, Indonesia — a vibrant tech hub with low cost of living and direct access to Asian markets." },
     ],
   },
   {
@@ -24,7 +24,7 @@ const faqGroups = [
     category: "Program Structure",
     items: [
       { q: "What does a typical day look like?", a: "Mornings: focused building time. Afternoons: workshops and mentorship sessions. Evenings: community dinners and networking." },
-      { q: "Is housing included?", a: "Yes. Fully furnished private housing in central Cebu is included in the program." },
+      { q: "Is housing included?", a: "Yes. Fully furnished private housing in central Bali is included in the program." },
       { q: "What tools and resources are provided?", a: "You get access to enterprise AI tools, co-working space, mentorship, and a full operational stack." },
     ],
   },
@@ -33,14 +33,14 @@ const faqGroups = [
     items: [
       { q: "How much does the program cost?", a: "Tuition details are shared during the application process. We offer need-based scholarships." },
       { q: "Do you take equity?", a: "No. 0% equity. You keep everything you build." },
-      { q: "What happens after the program?", a: "You leave with a business, a network, and lifetime access to the BuildForge alumni community." },
+      { q: "What happens after the program?", a: "You leave with a business, a network, and lifetime access to the BravioSchool alumni community." },
     ],
   },
   {
     category: "For Parents",
     items: [
-      { q: "Is this a legitimate program?", a: "Absolutely. BuildForge is backed by experienced entrepreneurs and venture investors with decades of combined experience." },
-      { q: "Is it safe in Cebu?", a: "Cebu is one of the most popular destinations for digital nomads and entrepreneurs in Southeast Asia, with excellent infrastructure and safety." },
+      { q: "Is this a legitimate program?", a: "Absolutely. BravioSchool is backed by experienced entrepreneurs and venture investors with decades of combined experience." },
+      { q: "Is it safe in Bali?", a: "Bali is one of the most popular destinations for digital nomads and entrepreneurs in Southeast Asia, with excellent infrastructure and safety." },
       { q: "Will my child get a credential?", a: "Better — they'll get a business. And a global network that no university can match." },
     ],
   },

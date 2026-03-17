@@ -2,13 +2,12 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { useGsapScrollReveal, useGsapFloat } from "@/hooks/useGsap";
 
 const dates = [
-  "March 23 — Applications Open",
+  "March 17 — Applications Now Open",
   "April 20 — Applications Close",
   "April 25 — Shortlisting & Interviews",
   "May 1 — Final Cohort Announcement",
   "June 29 — 12-Week Program Begins",
 ];
-
 const ProcessItem = ({ text, index }: { text: string; index: number }) => {
   const ref = useGsapFloat(2.5, 4);
 

@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { RealitySection } from "@/components/RealitySection";
-import { MentorSection } from "@/components/MentorSection";
+
 import { DeliverSection } from "@/components/DeliverSection";
 import { LocationSection } from "@/components/LocationSection";
 import { IncludedSection } from "@/components/IncludedSection";
@@ -62,7 +62,7 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <RealitySection />
-      <MentorSection />
+
       <DeliverSection />
       <LocationSection />
       <IncludedSection />

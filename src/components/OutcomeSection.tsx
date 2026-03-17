@@ -74,7 +74,7 @@ export const OutcomeSection = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-[1.1] tracking-tight">
               What you leave
               <br />
-              BuildForge with.
+              BravioSchool with.
             </h2>
           </div>
           <div className="lg:flex lg:items-end lg:justify-end">

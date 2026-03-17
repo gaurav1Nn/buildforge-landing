@@ -391,7 +391,7 @@ export const DeliverSection = () => {
             {[
               { n: "12", label: "Weeks" },
               { n: "30", label: "Founders" },
-              { n: "$0", label: "Equity" },
+              // { n: "$0", label: "Equity" },
             ].map(({ n, label }) => (
               <div key={n} className="text-center">
                 <div className="text-2xl font-black text-foreground">{n}</div>

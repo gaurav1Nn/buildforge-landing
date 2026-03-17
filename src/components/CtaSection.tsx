@@ -88,7 +88,7 @@ export const CtaSection = () => {
             <Countdown />
           </div>
           <span className="text-muted-foreground text-sm animate-pulse">
-            See you in Cebu, Philippines.
+            See you in Bali, Indonesia.
           </span>
         </div>
       </div>

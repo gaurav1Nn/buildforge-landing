@@ -27,11 +27,11 @@ const items = [
   },
   {
     title: "Global Network",
-    desc: "Lifetime access to the BuildForge alumni community — your future co-founders.",
+    desc: "Lifetime access to the BravioSchool alumni community — your future co-founders.",
   },
   {
     title: "Private Housing",
-    desc: "Furnished accommodation in central Cebu. Walk to the workspace in five minutes.",
+    desc: "Furnished accommodation in central Bali. Walk to the workspace in five minutes.",
   },
   {
     title: "Daily Meals",
@@ -328,8 +328,8 @@ export const IncludedSection = () => {
                 </div>
               ))}
               <div data-inc="stat">
-                <span className="text-2xl font-bold text-white">$0</span>
-                <span className="text-sm text-white/40 ml-1.5">cost</span>
+                <span className="text-2xl font-bold text-white"></span>
+                <span className="text-sm text-white/40 ml-1.5"></span>
               </div>
             </div>
           </div>
@@ -404,11 +404,11 @@ export const IncludedSection = () => {
                      sm:justify-between gap-4"
         >
           <p className="text-sm text-white/35">
-            All included. Zero equity taken. Zero tuition.
+            {/* All included. Zero equity taken. Zero tuition. */}
           </p>
           <p className="text-sm text-white/35">
-            Total value:{" "}
-            <span className="text-white font-medium">$15,000+</span>
+            {/* Total value:{" "} */}
+            {/* <span className="text-white font-medium">$15,000+</span> */}
           </p>
         </div>
 

@@ -1,67 +1,3 @@
-// import { SectionHeading } from "@/components/SectionHeading";
-// import { Button } from "@/components/ui/button";
-// import { useGsapScrollReveal } from "@/hooks/useGsap";
-
-// const oldWay = [
-//   ["4 Years", "Spent in a classroom"],
-//   ["$200K+", "In student debt"],
-//   ["Theory", "Based on outdated textbooks"],
-// ];
-
-// const newWay = [
-//   ["3 Months", "Of intensive building"],
-//   ["0% Equity", "You keep what you build"],
-//   ["Real Revenue", "Launch to real customers"],
-// ];
-
-// export const RealitySection = () => {
-//   const ref = useGsapScrollReveal(".reality-card, .reality-heading");
-
-//   return (
-//     <section ref={ref} className="py-24 md:py-32 px-6 max-w-7xl mx-auto">
-//       <div className="reality-heading">
-//         <SectionHeading label="THE REALITY">
-//           You already know the old path *isn't working.*
-//         </SectionHeading>
-//       </div>
-
-//       <div className="grid md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-12 mt-16 md:mt-20 items-center">
-//         <div className="reality-card space-y-8 p-8 md:p-12 rounded-3xl bg-foreground/[0.02] border border-border">
-//           <h3 className="text-destructive font-bold uppercase tracking-widest text-xs">
-//             ✕ The Old Way
-//           </h3>
-//           {oldWay.map(([val, desc]) => (
-//             <div key={val}>
-//               <div className="text-2xl md:text-3xl font-bold">{val}</div>
-//               <div className="text-muted-foreground">{desc}</div>
-//             </div>
-//           ))}
-//         </div>
-
-//         <div className="text-muted-foreground italic text-2xl text-center">vs</div>
-
-//         <div className="reality-card space-y-8 p-8 md:p-12 rounded-3xl bg-foreground/[0.05] border border-foreground/10">
-//           <h3 className="text-green-500 font-bold uppercase tracking-widest text-xs">
-//             ✓ The BuildForge Way
-//           </h3>
-//           {newWay.map(([val, desc]) => (
-//             <div key={val}>
-//               <div className="text-2xl md:text-3xl font-bold">{val}</div>
-//               <div className="text-muted-foreground">{desc}</div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-
-//       <div className="text-center mt-12">
-//         <Button variant="cta" className="px-8 py-5 text-base">
-//           Reserve Your Spot →
-//         </Button>
-//       </div>
-//     </section>
-//   );
-// };
-
 import { SectionHeading } from "@/components/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { useGsapScrollReveal } from "@/hooks/useGsap";
@@ -71,34 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── Data ──────────────────────────────────────────────────────────────────────
-const oldWay = [
-  {
-    val: "4 Years",
-    desc: "Spent in a classroom",
-    sub: "2,000+ hours of lectures you'll forget",
-    icon: "🎓",
-  },
-  {
-    val: "\$200K+",
-    desc: "In student debt",
-    sub: "Average US graduate debt, 2024",
-    icon: "💸",
-  },
-  {
-    val: "Theory",
-    desc: "Based on outdated textbooks",
-    sub: "Written before TikTok existed",
-    icon: "📚",
-  },
-  {
-    val: "0",
-    desc: "Real customers on graduation day",
-    sub: "A diploma is not a product",
-    icon: "🚫",
-  },
-];
-
+// ─── New Way Data ──────────────────────────────────────────────────────────────
 const newWay = [
   {
     val: "12 Weeks",
@@ -126,224 +35,509 @@ const newWay = [
   },
 ];
 
-// ─── Stat Row ──────────────────────────────────────────────────────────────────
-const StatRow = ({
-  val,
-  desc,
-  sub,
-  icon,
-  side,
+// ─── New Way Stat Row ──────────────────────────────────────────────────────────
+const NewStatRow = ({
+  val, desc, sub, icon,
 }: {
-  val: string;
-  desc: string;
-  sub: string;
-  icon: string;
-  side: "old" | "new";
+  val: string; desc: string; sub: string; icon: string;
 }) => (
-  <div
-    className={`group flex items-start gap-4 p-4 rounded-2xl transition-all duration-300
-      hover:bg-foreground/[0.04] ${side === "old" ? "opacity-60 hover:opacity-80" : ""}`}
-  >
-    {/* Icon bubble */}
+  <div className="group flex items-start gap-4 p-4 rounded-2xl
+                  transition-all duration-300 hover:bg-white/[0.03]">
     <div
-      className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-lg
-        ${
-          side === "old"
-            ? "bg-red-500/8 border border-red-500/15"
-            : "bg-emerald-500/10 border border-emerald-500/20"
-        }`}
+      className="shrink-0 w-10 h-10 rounded-xl flex items-center
+                 justify-center text-lg"
+      style={{
+        background: "rgba(16,185,129,0.1)",
+        border: "1px solid rgba(16,185,129,0.2)",
+      }}
     >
       {icon}
     </div>
-
     <div className="flex-1 min-w-0">
       <div className="flex items-baseline gap-2 flex-wrap">
-        <span
-          className={`text-xl md:text-2xl font-black tracking-tight
-            ${side === "old" ? "text-foreground/70" : "text-foreground"}`}
-        >
+        <span className="text-xl md:text-2xl font-black tracking-tight text-white">
           {val}
         </span>
-        <span className="text-sm font-medium text-foreground/60">{desc}</span>
+        <span style={{ color: "rgba(255,255,255,0.55)" }} className="text-sm font-medium">
+          {desc}
+        </span>
       </div>
-      <p className="text-xs text-foreground/30 mt-0.5 truncate">{sub}</p>
+      <p className="text-xs mt-0.5 truncate" style={{ color: "rgba(255,255,255,0.28)" }}>
+        {sub}
+      </p>
     </div>
-
-    {/* Side marker */}
-    <div className="shrink-0 mt-1">
-      {side === "old" ? (
-        <span className="text-red-400/60 text-sm font-bold">✕</span>
-      ) : (
-        <span className="text-emerald-400 text-sm font-bold">✓</span>
-      )}
+    <div className="shrink-0 mt-1 text-sm font-bold" style={{ color: "#34d399" }}>
+      ✓
     </div>
   </div>
 );
 
-// ─── Divider with VS ───────────────────────────────────────────────────────────
+// ─── VS Divider ───────────────────────────────────────────────────────────────
 const VsDivider = () => (
   <div className="flex md:flex-col items-center justify-center gap-3 py-4 md:py-0">
-    {/* Top line */}
-    <div className="flex-1 w-px bg-gradient-to-b from-transparent via-foreground/15 to-transparent hidden md:block" />
-    {/* VS badge */}
     <div
-      className="relative w-10 h-10 rounded-full border border-foreground/15
-                    bg-background flex items-center justify-center shrink-0
-                    shadow-[0_0_30px_rgba(255,255,255,0.04)]"
+      className="flex-1 w-px hidden md:block"
+      style={{
+        background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)",
+      }}
+    />
+    <div
+      className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+      style={{
+        border: "1px solid rgba(255,255,255,0.1)",
+        background: "#080808",
+        boxShadow: "0 0 30px rgba(255,255,255,0.03)",
+      }}
     >
-      <span className="text-[11px] font-black tracking-widest text-foreground/40">VS</span>
+      <span
+        className="text-[11px] font-black tracking-widest"
+        style={{ color: "rgba(255,255,255,0.3)" }}
+      >
+        VS
+      </span>
     </div>
-    {/* Bottom line */}
-    <div className="flex-1 w-px bg-gradient-to-b from-transparent via-foreground/15 to-transparent hidden md:block" />
+    <div
+      className="flex-1 w-px hidden md:block"
+      style={{
+        background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)",
+      }}
+    />
   </div>
 );
+
+// ─── OLD WAY — Certificate Design ─────────────────────────────────────────────
+const OldWayCard = () => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!cardRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".cert-line",
+        { opacity: 0, y: 6 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.5,
+          stagger: 0.07,
+          ease: "power2.out",
+          scrollTrigger: { trigger: cardRef.current, start: "top 85%" },
+        }
+      );
+      gsap.fromTo(
+        ".old-bar",
+        { scaleX: 0, transformOrigin: "left center" },
+        {
+          scaleX: 1,
+          duration: 1.4,
+          ease: "power3.out",
+          scrollTrigger: { trigger: cardRef.current, start: "top 82%" },
+        }
+      );
+    }, cardRef);
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div
+      ref={cardRef}
+      className="reality-card relative rounded-3xl overflow-hidden"
+      style={{
+        background: "linear-gradient(160deg, #0f0c08 0%, #100e09 60%, #0a0908 100%)",
+        border: "1px solid rgba(210,170,80,0.15)",
+      }}
+    >
+      {/* Aged lined paper texture */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          opacity: 0.025,
+          backgroundImage: `repeating-linear-gradient(
+            0deg,
+            rgba(210,170,80,0.5) 0px, rgba(210,170,80,0.5) 1px,
+            transparent 1px, transparent 28px
+          )`,
+        }}
+      />
+
+      {/* Corner ornaments */}
+      {[
+        "top-4 left-4", "top-4 right-4",
+        "bottom-4 left-4", "bottom-4 right-4",
+      ].map((pos) => (
+        <div
+          key={pos}
+          className={`absolute ${pos} w-7 h-7 pointer-events-none`}
+          style={{ opacity: 0.25 }}
+        >
+          <svg viewBox="0 0 28 28" fill="none">
+            <path
+              d="M1 10 L1 1 L10 1"
+              stroke="rgba(210,170,80,0.8)"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
+      ))}
+
+      {/* Faded ✕ watermark */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                   text-[220px] leading-none font-black select-none pointer-events-none"
+        style={{
+          color: "rgba(255,60,60,0.04)",
+          transform: "translate(-50%, -50%) rotate(-15deg)",
+        }}
+      >
+        ✕
+      </div>
+
+      <div className="relative p-6 md:p-8">
+
+        {/* ── Seal row ── */}
+        <div className="cert-line flex items-center justify-between mb-6">
+          {/* Left seal */}
+          <div
+            className="w-12 h-12 rounded-full flex items-center justify-center
+                       text-xl"
+            style={{
+              border: "1.5px solid rgba(210,170,80,0.2)",
+              background: "rgba(210,170,80,0.04)",
+              color: "rgba(210,170,80,0.4)",
+            }}
+          >
+            🏛️
+          </div>
+
+          {/* Center — university name */}
+          <div className="text-center">
+            <p
+              className="text-[9px] font-bold tracking-[0.35em] uppercase"
+              style={{ color: "rgba(210,170,80,0.35)" }}
+            >
+              University of Broken Promises
+            </p>
+            <p
+              className="text-[8px] tracking-[0.2em] mt-0.5"
+              style={{ color: "rgba(255,255,255,0.15)" }}
+            >
+              Est. 1850 · Still using the same curriculum
+            </p>
+          </div>
+
+          {/* Right — VOID stamp */}
+          <div
+            className="px-2.5 py-1 rounded text-[9px] font-black tracking-[0.2em]
+                       uppercase"
+            style={{
+              border: "1.5px solid rgba(255,60,60,0.25)",
+              color: "rgba(255,60,60,0.3)",
+              transform: "rotate(8deg)",
+            }}
+          >
+            VOID
+          </div>
+        </div>
+
+        {/* ── Divider ── */}
+        <div
+          className="cert-line h-px w-full mb-6"
+          style={{
+            background: "linear-gradient(90deg, transparent, rgba(210,170,80,0.2), transparent)",
+          }}
+        />
+
+        {/* ── Certificate title ── */}
+        <div className="cert-line text-center mb-6">
+          <p
+            className="text-[10px] font-bold tracking-[0.3em] uppercase mb-2"
+            style={{ color: "rgba(210,170,80,0.3)" }}
+          >
+            Certificate of Completion
+          </p>
+          <h3
+            className="text-lg md:text-xl font-black leading-snug"
+            style={{ color: "rgba(255,255,255,0.25)" }}
+          >
+            This certifies that you have
+            <br />
+            <span style={{ color: "rgba(255,255,255,0.45)" }}>
+              successfully wasted
+            </span>
+          </h3>
+          <div
+            className="text-4xl md:text-5xl font-black tracking-tight mt-2"
+            style={{ color: "rgba(255,80,80,0.7)" }}
+          >
+            4 Years
+          </div>
+          <p
+            className="text-sm mt-1 font-light italic"
+            style={{ color: "rgba(255,255,255,0.2)" }}
+          >
+            of your most productive years
+          </p>
+        </div>
+
+        {/* ── Divider ── */}
+        <div
+          className="cert-line h-px w-full mb-5"
+          style={{
+            background: "linear-gradient(90deg, transparent, rgba(210,170,80,0.15), transparent)",
+          }}
+        />
+
+        {/* ── The real receipts — what you actually got ── */}
+        <div className="space-y-3 mb-6">
+          {[
+            {
+              label: "Hours sat in lectures",
+              value: "2,400 hrs",
+              note: "memorised, regurgitated, forgotten",
+              icon: "😴",
+            },
+            {
+              label: "Hours of useless theory",
+              value: "1,800 hrs",
+              note: "textbooks written before smartphones existed",
+              icon: "📚",
+            },
+            {
+              label: "Real products built",
+              value: "0",
+              note: "zero customers, zero proof of work",
+              icon: "🕳️",
+            },
+            {
+              label: "Skills used in first job",
+              value: "14%",
+              note: "86% of what you learned — irrelevant",
+              icon: "⏳",
+            },
+          ].map((item, i) => (
+            <div
+              key={item.label}
+              className="cert-line flex items-center gap-3 px-4 py-3 rounded-xl"
+              style={{
+                background: i % 2 === 0
+                  ? "rgba(255,255,255,0.015)"
+                  : "transparent",
+                border: "1px solid rgba(255,255,255,0.04)",
+              }}
+            >
+              {/* Icon */}
+              <span className="text-base shrink-0 grayscale opacity-60">
+                {item.icon}
+              </span>
+
+              {/* Label + note */}
+              <div className="flex-1 min-w-0">
+                <p
+                  className="text-sm font-medium truncate"
+                  style={{ color: "rgba(255,255,255,0.38)" }}
+                >
+                  {item.label}
+                </p>
+                <p
+                  className="text-[11px] truncate"
+                  style={{ color: "rgba(255,255,255,0.18)" }}
+                >
+                  {item.note}
+                </p>
+              </div>
+
+              {/* Value */}
+              <span
+                className="text-sm font-black font-mono shrink-0"
+                style={{ color: "rgba(255,100,100,0.6)" }}
+              >
+                {item.value}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Outcome bar ── */}
+        <div ref={cardRef}>
+          <div className="cert-line flex items-center justify-between mb-2">
+            <span
+              className="text-[11px] font-medium tracking-[0.1em] uppercase"
+              style={{ color: "rgba(255,255,255,0.2)" }}
+            >
+              Skills actually used after graduation
+            </span>
+            <span
+              className="text-[11px] font-black"
+              style={{ color: "rgba(255,80,80,0.6)" }}
+            >
+              14%
+            </span>
+          </div>
+          <div
+            className="cert-line h-1.5 w-full rounded-full overflow-hidden"
+            style={{ background: "rgba(255,255,255,0.05)" }}
+          >
+            <div
+              className="old-bar h-full rounded-full"
+              style={{
+                width: "14%",
+                background:
+                  "linear-gradient(90deg, rgba(255,60,60,0.8), rgba(255,100,60,0.35))",
+              }}
+            />
+          </div>
+          <p
+            className="cert-line text-[10px] mt-1.5"
+            style={{ color: "rgba(255,255,255,0.15)" }}
+          >
+            86% of university coursework has no relevance to your first job
+          </p>
+        </div>
+
+        {/* ── Signature row ── */}
+        <div
+          className="cert-line flex items-end justify-between mt-6 pt-5"
+          style={{
+            borderTop: "1px solid rgba(210,170,80,0.08)",
+          }}
+        >
+          {/* Signature left */}
+          <div>
+            <p
+              className="text-base font-black italic mb-0.5"
+              style={{
+                color: "rgba(210,170,80,0.2)",
+                fontFamily: "Georgia, serif",
+              }}
+            >
+              Dean of Debt
+            </p>
+            <div
+              className="h-px w-24"
+              style={{ background: "rgba(210,170,80,0.15)" }}
+            />
+            <p
+              className="text-[9px] mt-1 tracking-[0.15em] uppercase"
+              style={{ color: "rgba(255,255,255,0.15)" }}
+            >
+              Authorised signatory
+            </p>
+          </div>
+
+          {/* Right — NOT RECOMMENDED stamp */}
+          <div
+            className="px-3 py-1.5 rounded-lg text-[9px] font-black
+                       tracking-[0.18em] uppercase"
+            style={{
+              border: "1.5px solid rgba(255,60,60,0.2)",
+              color: "rgba(255,60,60,0.28)",
+              transform: "rotate(-3deg)",
+            }}
+          >
+            Not recommended
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
 
 // ─── Main Section ──────────────────────────────────────────────────────────────
 export const RealitySection = () => {
   const ref = useGsapScrollReveal(".reality-card, .reality-heading");
-  const barRef = useRef<HTMLDivElement>(null);
+  const newBarRef = useRef<HTMLDivElement>(null);
 
-  // Animate the comparison progress bar on scroll
   useEffect(() => {
-    if (!barRef.current) return;
+    if (!newBarRef.current) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        ".old-bar",
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: barRef.current,
-            start: "top 80%",
-          },
-        }
-      );
-      gsap.fromTo(
         ".new-bar",
-        { scaleX: 0 },
+        { scaleX: 0, transformOrigin: "left center" },
         {
           scaleX: 1,
           duration: 1.2,
           ease: "power3.out",
           delay: 0.2,
-          scrollTrigger: {
-            trigger: barRef.current,
-            start: "top 80%",
-          },
+          scrollTrigger: { trigger: newBarRef.current, start: "top 82%" },
         }
       );
-    }, barRef);
+    }, newBarRef);
     return () => ctx.revert();
   }, []);
 
   return (
     <section ref={ref} className="py-24 md:py-36 overflow-hidden">
-      {/* ── Section header ── */}
+
+      {/* ── Header ── */}
       <div className="reality-heading max-w-7xl mx-auto px-6">
         <SectionHeading label="THE REALITY">
           You already know the old path *isn't working.*
         </SectionHeading>
-
-        {/* Subheading */}
-        <p className="mt-4 max-w-xl text-base text-foreground/40 font-light leading-relaxed">
+        <p
+          className="mt-4 max-w-xl text-base font-light leading-relaxed"
+          style={{ color: "rgba(255,255,255,0.35)" }}
+        >
           The university system was designed for the industrial age.
-          BuildForge is designed for the age you're actually living in.
+          BravioSchool is designed for the age you're actually living in.
         </p>
       </div>
 
-      {/* ── Comparison cards ── */}
+      {/* ── Comparison grid ── */}
       <div className="max-w-7xl mx-auto px-6 mt-16 md:mt-20">
         <div className="grid md:grid-cols-[1fr_48px_1fr] gap-4 md:gap-0 items-stretch">
 
-          {/* ── OLD WAY ── */}
+          {/* OLD WAY */}
+          <OldWayCard />
+
+          {/* VS */}
+          <VsDivider />
+
+          {/* NEW WAY */}
           <div
-            className="reality-card relative rounded-3xl overflow-hidden
-                          border border-red-500/10 bg-gradient-to-br
-                          from-red-950/20 via-background to-background"
+            className="reality-card relative rounded-3xl overflow-hidden"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(16,185,129,0.08) 0%, #080808 50%, #080808 100%)",
+              border: "1px solid rgba(16,185,129,0.15)",
+            }}
           >
-            {/* Noise texture overlay */}
-            <div className="absolute inset-0 opacity-[0.015]"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-              }}
+            {/* Glow */}
+            <div
+              className="absolute -top-20 -right-20 w-56 h-56 rounded-full
+                         pointer-events-none blur-3xl"
+              style={{ background: "rgba(16,185,129,0.07)" }}
             />
 
             <div className="relative p-6 md:p-8">
-              {/* Card header */}
+              {/* Header */}
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold
-                                   tracking-[0.2em] uppercase text-red-400/70 bg-red-500/8
-                                   border border-red-500/15 rounded-full px-3 py-1">
-                    <span>✕</span> The Old Way
+                  <span
+                    className="inline-flex items-center gap-1.5 text-[10px] font-bold
+                               tracking-[0.2em] uppercase rounded-full px-3 py-1"
+                    style={{
+                      color: "rgba(52,211,153,0.9)",
+                      background: "rgba(16,185,129,0.08)",
+                      border: "1px solid rgba(16,185,129,0.2)",
+                    }}
+                  >
+                    ✓ The BravioSchool Way
                   </span>
-                  <p className="text-xs text-foreground/25 mt-2 ml-0.5">
-                    Traditional 4-year degree
-                  </p>
-                </div>
-                {/* Crossed out graduation cap */}
-                <div className="w-12 h-12 rounded-2xl bg-red-500/6 border border-red-500/10
-                                flex items-center justify-center text-2xl grayscale opacity-50">
-                  🎓
-                </div>
-              </div>
-
-              {/* Stats */}
-              <div className="space-y-1">
-                {oldWay.map((item) => (
-                  <StatRow key={item.val} {...item} side="old" />
-                ))}
-              </div>
-
-              {/* Bottom outcome bar */}
-              <div className="mt-6 pt-5 border-t border-foreground/6">
-                <div className="flex items-center justify-between text-xs text-foreground/30 mb-2">
-                  <span>Outcome likelihood</span>
-                  <span className="text-red-400/60 font-semibold">Low</span>
-                </div>
-                <div ref={barRef} className="h-1.5 rounded-full bg-foreground/5 overflow-hidden">
-                  <div
-                    className="old-bar origin-left h-full w-[28%] rounded-full
-                                bg-gradient-to-r from-red-500/60 to-red-500/20"
-                  />
-                </div>
-                <p className="text-[10px] text-foreground/20 mt-1.5">
-                  Only 28% of grads work in their field of study
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* ── VS divider ── */}
-          <VsDivider />
-
-          {/* ── NEW WAY ── */}
-          <div
-            className="reality-card relative rounded-3xl overflow-hidden
-                          border border-emerald-500/15
-                          bg-gradient-to-br from-emerald-950/20 via-background to-background"
-          >
-            {/* Glow accent */}
-            <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full
-                            bg-emerald-500/8 blur-3xl pointer-events-none" />
-
-            <div className="relative p-6 md:p-8">
-              {/* Card header */}
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold
-                                   tracking-[0.2em] uppercase text-emerald-400/90 bg-emerald-500/8
-                                   border border-emerald-500/20 rounded-full px-3 py-1">
-                    <span>✓</span> The BuildForge Way
-                  </span>
-                  <p className="text-xs text-foreground/25 mt-2 ml-0.5">
+                  <p
+                    className="text-xs mt-2 ml-0.5"
+                    style={{ color: "rgba(255,255,255,0.22)" }}
+                  >
                     12-week founder accelerator
                   </p>
                 </div>
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/8 border border-emerald-500/15
-                                flex items-center justify-center text-2xl">
+                <div
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl"
+                  style={{
+                    background: "rgba(16,185,129,0.08)",
+                    border: "1px solid rgba(16,185,129,0.15)",
+                  }}
+                >
                   ⚡
                 </div>
               </div>
@@ -351,68 +545,99 @@ export const RealitySection = () => {
               {/* Stats */}
               <div className="space-y-1">
                 {newWay.map((item) => (
-                  <StatRow key={item.val} {...item} side="new" />
+                  <NewStatRow key={item.val} {...item} />
                 ))}
               </div>
 
-              {/* Bottom outcome bar */}
-              <div className="mt-6 pt-5 border-t border-foreground/6">
-                <div className="flex items-center justify-between text-xs text-foreground/30 mb-2">
-                  <span>Outcome likelihood</span>
-                  <span className="text-emerald-400 font-semibold">High</span>
+              {/* Outcome bar */}
+              <div ref={newBarRef} className="mt-6 pt-5"
+                style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="flex items-center justify-between mb-2">
+                  <span
+                    className="text-xs"
+                    style={{ color: "rgba(255,255,255,0.28)" }}
+                  >
+                    Outcome likelihood
+                  </span>
+                  <span
+                    className="text-[11px] font-semibold"
+                    style={{ color: "#34d399" }}
+                  >
+                    High
+                  </span>
                 </div>
-                <div className="h-1.5 rounded-full bg-foreground/5 overflow-hidden">
+                <div
+                  className="h-1.5 rounded-full overflow-hidden"
+                  style={{ background: "rgba(255,255,255,0.05)" }}
+                >
                   <div
-                    className="new-bar origin-left h-full w-[91%] rounded-full
-                                bg-gradient-to-r from-emerald-500/80 to-emerald-400/40"
+                    className="new-bar h-full rounded-full"
+                    style={{
+                      width: "91%",
+                      background:
+                        "linear-gradient(90deg, rgba(16,185,129,0.8), rgba(52,211,153,0.35))",
+                    }}
                   />
                 </div>
-                <p className="text-[10px] text-foreground/20 mt-1.5">
+                <p
+                  className="text-[10px] mt-1.5"
+                  style={{ color: "rgba(255,255,255,0.18)" }}
+                >
                   91% of cohort alumni ship a product within 90 days
                 </p>
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
-      {/* ── Bottom pull quote ── */}
+      {/* ── Pull quote ── */}
       <div className="max-w-7xl mx-auto px-6 mt-16">
         <div
-          className="relative rounded-3xl border border-foreground/6
-                        bg-foreground/[0.02] p-8 md:p-12 overflow-hidden"
+          className="relative rounded-3xl p-8 md:p-12 overflow-hidden"
+          style={{
+            border: "1px solid rgba(255,255,255,0.05)",
+            background: "rgba(255,255,255,0.015)",
+          }}
         >
-          {/* Big background quote mark */}
           <div
             className="absolute -top-4 -left-2 text-[200px] leading-none font-black
-                          text-foreground/[0.025] select-none pointer-events-none"
+                       select-none pointer-events-none"
+            style={{ color: "rgba(255,255,255,0.02)" }}
           >
             "
           </div>
-
           <div className="relative grid md:grid-cols-[1fr_auto] gap-8 items-center">
             <div>
-              <p className="text-xl md:text-2xl font-light text-foreground/70 leading-relaxed">
+              <p
+                className="text-xl md:text-2xl font-light leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.6)" }}
+              >
                 The best founders didn't wait for permission.
-                <span className="text-foreground font-semibold">
+                <span className="text-white font-semibold">
                   {" "}They built before they were ready.
                 </span>
               </p>
-              <p className="text-sm text-foreground/30 mt-4">
-                — The BuildForge Manifesto
+              <p
+                className="text-sm mt-4"
+                style={{ color: "rgba(255,255,255,0.25)" }}
+              >
+                — The BravioSchool Manifesto
               </p>
             </div>
-
-            {/* Mini stat cluster */}
             <div className="flex md:flex-col gap-6 md:gap-4 shrink-0">
               {[
                 { n: "30", label: "Seats per cohort" },
                 { n: "12", label: "Weeks to launch" },
-                { n: "\$0", label: "Equity taken" },
+                { n: "$0", label: "Equity taken" },
               ].map(({ n, label }) => (
                 <div key={n} className="text-center">
-                  <div className="text-2xl font-black text-foreground/80">{n}</div>
-                  <div className="text-[10px] text-foreground/30 tracking-wide uppercase whitespace-nowrap">
+                  <div className="text-2xl font-black text-white">{n}</div>
+                  <div
+                    className="text-[10px] tracking-wide uppercase whitespace-nowrap mt-0.5"
+                    style={{ color: "rgba(255,255,255,0.28)" }}
+                  >
                     {label}
                   </div>
                 </div>
@@ -425,12 +650,16 @@ export const RealitySection = () => {
       {/* ── CTA ── */}
       <div className="text-center mt-12 space-y-3">
         <Button variant="cta" className="px-10 py-6 text-base font-bold rounded-2xl">
-          Choose the BuildForge Way →
+          Choose the BravioSchool Way →
         </Button>
-        <p className="text-xs text-foreground/25 tracking-wide">
-          Limited to 30 founders · Cohort 1 · Cebu, Philippines
+        <p
+          className="text-xs tracking-wide"
+          style={{ color: "rgba(255,255,255,0.22)" }}
+        >
+          Limited to 30 founders · Cohort 1 · Bali, Indonesia
         </p>
       </div>
+
     </section>
   );
 };

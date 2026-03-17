@@ -100,7 +100,7 @@
 //         {/* Main Heading with glow effect */}
 //         <div className="hero-heading">
 //           <AccentHeading level="h1" className="text-glow">
-//             BuildForge is the entrepreneurship school of the *future.*
+//             BravioSchool is the entrepreneurship school of the *future.*
 //           </AccentHeading>
 //         </div>
 
@@ -265,7 +265,7 @@ export const HeroSection = () => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
           </span>
-          Cebu, Philippines · Cohort 1 · Applications Open
+          Bali , Indonesia · Cohort 1 · Applications Open
         </div>
 
         {/* ── Headline ── */}
@@ -291,7 +291,7 @@ export const HeroSection = () => {
 
           <p className="mt-6 max-w-lg mx-auto text-base sm:text-lg text-foreground/45
                         font-light leading-relaxed tracking-wide">
-            BuildForge is where bold founders are forged —{" "}
+            BravioSchool is where bold founders are forged —{" "}
             <em className="not-italic text-foreground/75 font-medium">
               12 weeks of raw, real-world entrepreneurship
             </em>{" "}
@@ -336,4 +336,4 @@ export const HeroSection = () => {
   );
 };
 
-
+
