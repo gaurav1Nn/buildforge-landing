@@ -206,7 +206,7 @@ const MagneticButton = ({
   variant?: string;
   className?: string;
 }) => {
-  const ref = useGsapMagnetic(0.4);
+  const ref = useGsapMagnetic(0.4) as React.RefObject<HTMLDivElement>;
   return (
     <div ref={ref} className="inline-block">
       <Button variant={variant as any} className={className}>
@@ -227,10 +227,9 @@ const ScrollIndicator = () => (
 // ─── Hero Section ──────────────────────────────────────────────────────────────
 export const HeroSection = () => {
   const ref = useGsapHeroEntrance();
-  const badgeRef = useGsapFloat(4, 5);
 
   return (
-    <section className="relative h-svh flex items-center justify-center overflow-hidden bg-background">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Video / Poster Background */}
       <video
         autoPlay
@@ -244,26 +243,24 @@ export const HeroSection = () => {
       </video>
 
       {/* Layered Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/50 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/40 to-background" />
       <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
 
       {/* Visual Layers */}
       <GridLines />
       <FloatingOrbs />
 
-      {/* ── Main Content ────────────────────────────────────────────────────── */}
+      {/* ── Main Content ── */}
       <div
-        ref={ref}
-        className="relative z-10 max-w-5xl w-full px-6 text-center flex flex-col items-center pt-24"
+        ref={ref as React.RefObject<HTMLDivElement>}
+        className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center flex flex-col items-center"
+        style={{ paddingTop: "88px" }}
       >
-        {/* ── Eyebrow Badge ── */}
-        <div
-          ref={badgeRef}
-          className="hero-badge mb-10 inline-flex items-center gap-2 px-4 py-1.5 rounded-full
-                     border border-foreground/15 bg-foreground/5 backdrop-blur-md
-                     text-[10px] font-semibold tracking-[0.2em] uppercase text-foreground/70"
-        >
-          {/* Pulsing dot */}
+
+        {/* ── Badge ── */}
+        <div className="hero-badge mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full
+                        border border-foreground/15 bg-foreground/5 backdrop-blur-md
+                        text-[10px] font-semibold tracking-[0.2em] uppercase text-foreground/60">
           <span className="relative flex h-1.5 w-1.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
@@ -271,16 +268,11 @@ export const HeroSection = () => {
           Cebu, Philippines · Cohort 1 · Applications Open
         </div>
 
-        {/* ── Main Headline ── */}
-        <div className="hero-heading mb-6">
-          <p className="text-[11px] font-bold tracking-[0.4em] uppercase text-foreground/35 mb-5">
-            A New Kind of School
-          </p>
-
-          <h1 className="font-black leading-[0.9] tracking-tight">
-            {/* Line 1 — ghost / outlined */}
+        {/* ── Headline ── */}
+        <div className="hero-heading mb-8">
+          <h1 className="font-black leading-[0.88] tracking-tight">
             <span
-              className="block text-[clamp(4rem,10vw,9rem)]"
+              className="block text-[clamp(3.5rem,9vw,8rem)]"
               style={{
                 WebkitTextStroke: "1.5px hsl(var(--foreground)/0.22)",
                 color: "transparent",
@@ -288,18 +280,16 @@ export const HeroSection = () => {
             >
               Build the
             </span>
-
-            {/* Line 2 — filled, slightly indented for visual tension */}
             <span
-              className="block text-[clamp(4rem,10vw,9rem)] pl-[0.08em]
+              className="block text-[clamp(3.5rem,9vw,8rem)] pl-[0.08em]
                          bg-gradient-to-br from-white via-white/90 to-white/50
-                         bg-clip-text text-transparent drop-shadow-[0_2px_40px_rgba(255,255,255,0.15)]"
+                         bg-clip-text text-transparent"
             >
               Future.
             </span>
           </h1>
 
-          <p className="mt-7 max-w-lg mx-auto text-base sm:text-[17px] text-foreground/45
+          <p className="mt-6 max-w-lg mx-auto text-base sm:text-lg text-foreground/45
                         font-light leading-relaxed tracking-wide">
             BuildForge is where bold founders are forged —{" "}
             <em className="not-italic text-foreground/75 font-medium">
@@ -309,30 +299,12 @@ export const HeroSection = () => {
           </p>
         </div>
 
-        {/* ── Social Proof Strip ── */}
-        <div className="hero-social flex items-center gap-6 my-8">
-          {/* Avatars */}
-          <div className="flex -space-x-2">
-            {[
-              "https://i.pravatar.cc/32?img=1",
-              "https://i.pravatar.cc/32?img=5",
-              "https://i.pravatar.cc/32?img=12",
-              "https://i.pravatar.cc/32?img=20",
-            ].map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt=""
-                className="w-7 h-7 rounded-full border-2 border-background object-cover"
-              />
-            ))}
-          </div>
-          <div className="h-4 w-px bg-foreground/15" />
+        {/* ── Social Proof ── */}
+        <div className="hero-social flex items-center gap-4 mb-8">
           <p className="text-xs text-foreground/50">
             <span className="text-foreground/80 font-semibold">47 founders</span> already applied
           </p>
           <div className="h-4 w-px bg-foreground/15" />
-          {/* Stars */}
           <div className="flex items-center gap-1">
             {"★★★★★".split("").map((s, i) => (
               <span key={i} className="text-amber-400 text-xs">{s}</span>
@@ -341,19 +313,13 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        {/* ── CTAs ── */}
-        <div className="hero-buttons flex flex-col sm:flex-row items-center gap-3 mt-2">
+        {/* ── CTA ── */}
+        <div className="hero-buttons">
           <MagneticButton
             variant="cta"
-            className="px-8 py-6 text-sm font-bold tracking-wide rounded-xl"
+            className="px-10 py-5 text-base font-bold tracking-wide rounded-xl shadow-lg"
           >
             Reserve Your Spot →
-          </MagneticButton>
-          <MagneticButton
-            variant="cta-ghost"
-            className="px-8 py-6 text-sm font-medium tracking-wide rounded-xl"
-          >
-            Watch the Film ▶
           </MagneticButton>
         </div>
 
@@ -362,14 +328,6 @@ export const HeroSection = () => {
           Limited to 30 founders · No tuition · Equity-free
         </p>
 
-        {/* ── Countdown ── */}
-        <div className="hero-countdown mt-12 w-full">
-          {/* Label */}
-          <p className="text-[10px] tracking-[0.3em] uppercase text-foreground/30 mb-3">
-            Applications close in
-          </p>
-          <Countdown />
-        </div>
       </div>
 
       {/* Scroll hint */}
@@ -377,3 +335,5 @@ export const HeroSection = () => {
     </section>
   );
 };
+
+

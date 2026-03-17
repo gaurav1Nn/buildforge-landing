@@ -321,7 +321,7 @@ export const PathsSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-28 md:py-40">
+    <section ref={sectionRef} className="pt-16 md:pt-24 pb-28 md:pb-40">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* ── Header ── */}

@@ -245,7 +245,7 @@ export const IncludedSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-28 md:py-40">
+    <section ref={sectionRef} className="pt-28 md:pt-40 pb-16 md:pb-24">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* ── Layout: heading left, grid right ── */}

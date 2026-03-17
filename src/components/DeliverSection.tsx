@@ -80,7 +80,7 @@
 //   );
 // };
 import { SectionHeading } from "@/components/SectionHeading";
-import { useGsapScrollReveal, useGsapTilt, useGsapFloat } from "@/hooks/useGsap";
+import { useGsapTilt, useGsapFloat } from "@/hooks/useGsap";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -326,10 +326,8 @@ const FeatureItem = ({
 
 // ─── Main Section ──────────────────────────────────────────────────────────────
 export const DeliverSection = () => {
-  const ref = useGsapScrollReveal(".deliver-card");
-
   return (
-    <section ref={ref} className="py-24 md:py-36 overflow-visible">
+    <section className="py-24 md:py-36 overflow-visible">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* ── Header ── */}
