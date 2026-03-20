@@ -8,19 +8,19 @@ export const Footer = () => (
         </p>
       </div>
       <div>
-        <h5 className="font-bold mb-6">Program</h5>
+        <h5 className="font-bold mb-6"></h5>
         <ul className="space-y-4 text-muted-foreground text-sm">
-          <li><a href="#mentors" className="hover:text-foreground transition-colors">Curriculum</a></li>
-          <li><a href="#mentors" className="hover:text-foreground transition-colors">Mentors</a></li>
+          <li><a href="#mentors" className="hover:text-foreground transition-colors"></a></li>
+          <li><a href="#mentors" className="hover:text-foreground transition-colors"></a></li>
           <li><a href="#location" className="hover:text-foreground transition-colors">Bali Campus</a></li>
         </ul>
       </div>
       <div>
-        <h5 className="font-bold mb-6">Apply</h5>
+        <h5 className="font-bold mb-6"></h5>
         <ul className="space-y-4 text-muted-foreground text-sm">
-          <li><a href="#faq" className="hover:text-foreground transition-colors">Scholarships</a></li>
+          <li><a href="#faq" className="hover:text-foreground transition-colors"></a></li>
           <li><a href="#faq" className="hover:text-foreground transition-colors">FAQ</a></li>
-          <li><a href="#faq" className="hover:text-foreground transition-colors">Contact</a></li>
+          <li><a href="#faq" className="hover:text-foreground transition-colors"></a></li>
         </ul>
       </div>
     </div>

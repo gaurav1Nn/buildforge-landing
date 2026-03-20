@@ -4,6 +4,7 @@ import { AccentHeading } from "@/components/SectionHeading";
 import { useGsapScrollReveal, useGsapMagnetic, useGsapFloat } from "@/hooks/useGsap";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useReserveModal } from "@/lib/ModalContext";
 
 // Floating background particles
 const CtaParticles = () => {
@@ -48,14 +49,14 @@ const CtaParticles = () => {
 };
 
 // Magnetic CTA Button
-const MagneticCtaButton = ({ children }: { children: React.ReactNode }) => {
+const MagneticCtaButton = ({ children, onClick }: { children: React.ReactNode; onClick?: () => void }) => {
   const ref = useGsapMagnetic(0.5);
   const floatRef = useGsapFloat(2, 3);
 
   return (
-    <div ref={ref}>
-      <div ref={floatRef}>
-        <Button variant="cta" className="px-12 py-6 text-lg animate-glow">
+    <div ref={ref as React.RefObject<HTMLDivElement>}>
+      <div ref={floatRef as React.RefObject<HTMLDivElement>}>
+        <Button variant="cta" className="px-12 py-6 text-lg animate-glow" onClick={onClick}>
           {children}
         </Button>
       </div>
@@ -65,6 +66,7 @@ const MagneticCtaButton = ({ children }: { children: React.ReactNode }) => {
 
 export const CtaSection = () => {
   const ref = useGsapScrollReveal(".cta-content");
+  const { open } = useReserveModal();
 
   return (
     <section ref={ref} className="py-24 md:py-32 px-6 border-t border-border bg-foreground/[0.01] relative overflow-hidden">
@@ -83,7 +85,7 @@ export const CtaSection = () => {
           The only school where tuition pays for itself.
         </p>
         <div className="flex flex-col items-center gap-8 mt-12">
-          <MagneticCtaButton>Reserve Your Spot →</MagneticCtaButton>
+          <MagneticCtaButton onClick={open}>Reserve Your Spot →</MagneticCtaButton>
           <div className="p-6 rounded-2xl bg-foreground/[0.03] border border-border backdrop-blur-sm">
             <Countdown />
           </div>

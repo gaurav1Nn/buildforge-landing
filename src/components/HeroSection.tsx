@@ -128,6 +128,7 @@ import { Countdown } from "@/components/Countdown";
 import { useGsapHeroEntrance, useGsapMagnetic, useGsapFloat } from "@/hooks/useGsap";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useReserveModal } from "@/lib/ModalContext";
 
 // ─── Animated Grid Lines ───────────────────────────────────────────────────────
 const GridLines = () => (
@@ -201,15 +202,17 @@ const MagneticButton = ({
   children,
   variant = "cta",
   className = "",
+  onClick,
 }: {
   children: React.ReactNode;
   variant?: string;
   className?: string;
+  onClick?: () => void;
 }) => {
   const ref = useGsapMagnetic(0.4) as React.RefObject<HTMLDivElement>;
   return (
     <div ref={ref} className="inline-block">
-      <Button variant={variant as any} className={className}>
+      <Button variant={variant as any} className={className} onClick={onClick}>
         {children}
       </Button>
     </div>
@@ -227,6 +230,7 @@ const ScrollIndicator = () => (
 // ─── Hero Section ──────────────────────────────────────────────────────────────
 export const HeroSection = () => {
   const ref = useGsapHeroEntrance();
+  const { open } = useReserveModal();
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
@@ -302,15 +306,15 @@ export const HeroSection = () => {
         {/* ── Social Proof ── */}
         <div className="hero-social flex items-center gap-4 mb-8">
           <p className="text-xs text-foreground/50">
-            <span className="text-foreground/80 font-semibold">47 founders</span> already applied
+            {/* <span className="text-foreground/80 font-semibold">47 founders</span> already applied */}
           </p>
-          <div className="h-4 w-px bg-foreground/15" />
-          <div className="flex items-center gap-1">
+          {/* <div className="h-4 w-px bg-foreground/15" /> */}
+          {/* <div className="flex items-center gap-1">
             {"★★★★★".split("").map((s, i) => (
               <span key={i} className="text-amber-400 text-xs">{s}</span>
             ))}
             <span className="text-xs text-foreground/50 ml-1">5.0</span>
-          </div>
+          </div> */}
         </div>
 
         {/* ── CTA ── */}
@@ -318,6 +322,7 @@ export const HeroSection = () => {
           <MagneticButton
             variant="cta"
             className="px-10 py-5 text-base font-bold tracking-wide rounded-xl shadow-lg"
+            onClick={() => open()}
           >
             Reserve Your Spot →
           </MagneticButton>

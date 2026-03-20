@@ -4,6 +4,7 @@ import { useGsapScrollReveal } from "@/hooks/useGsap";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReserveModal } from "@/lib/ModalContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -447,6 +448,7 @@ const OldWayCard = () => {
 export const RealitySection = () => {
   const ref = useGsapScrollReveal(".reality-card, .reality-heading");
   const newBarRef = useRef<HTMLDivElement>(null);
+  const { open } = useReserveModal();
 
   useEffect(() => {
     if (!newBarRef.current) return;
@@ -649,7 +651,7 @@ export const RealitySection = () => {
 
       {/* ── CTA ── */}
       <div className="text-center mt-12 space-y-3">
-        <Button variant="cta" className="px-10 py-6 text-base font-bold rounded-2xl">
+        <Button variant="cta" className="px-10 py-6 text-base font-bold rounded-2xl" onClick={open}>
           Choose the BravioSchool Way →
         </Button>
         <p

@@ -155,12 +155,14 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useReserveModal } from "@/lib/ModalContext";
 
-const navLinks = ["Mentors", "Location", "Included", "Journey", "FAQ"];
+const navLinks = ["Location", "Included", "Journey", "FAQ"];
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { open } = useReserveModal();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -191,7 +193,7 @@ export const Navbar = () => {
           ))}
         </div>
 
-        <Button variant="cta" size="lg" className="hidden md:inline-flex">
+        <Button variant="cta" size="lg" className="hidden md:inline-flex" onClick={open}>
           Reserve Your Spot →
         </Button>
 
@@ -221,7 +223,7 @@ export const Navbar = () => {
               {link}
             </a>
           ))}
-          <Button variant="cta" className="w-full mt-4">
+          <Button variant="cta" className="w-full mt-4" onClick={open}>
             Reserve Your Spot →
           </Button>
         </div>
